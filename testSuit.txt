@@ -1,0 +1,22 @@
+*** Settings ***
+Library           Selenium2Library
+Library           RequestsLibrary
+Library           json
+Library           requests
+Library           Collections
+
+*** Test Cases ***
+testCase_01
+    open browser    http://www.qisuu.com/    chrome
+    ${title}    get title
+    log    ${title}
+    close browser
+
+testBaiduSearch
+    open browser    http://www.baidu.com    chrome
+    input text    id=kw    robot framework
+    click element    id=su
+    sleep    2
+    ${title}    get title
+    should contain    ${title}    robot framework_百度搜索
+    close browser
